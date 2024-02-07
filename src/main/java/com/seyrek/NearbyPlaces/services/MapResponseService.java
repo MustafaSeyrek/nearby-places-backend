@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 @AllArgsConstructor
 @Service
@@ -24,7 +23,6 @@ public class MapResponseService {
 
     public MapResponse createMapResponse(MapRequest mapRequest) {
         MapResponse old = getMapResponseByMapRequestId(mapRequest.getId());
-        System.out.println("*****2222************* "+old);
         if (old != null) {
             return old;
         }

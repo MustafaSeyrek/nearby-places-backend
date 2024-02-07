@@ -20,7 +20,6 @@ public class MapRequestService {
 
     public MapResponse createMapRequest(MapRequest mapRequest) {
         MapRequest old = getMapRequestWithParameters(mapRequest.getLatitude(), mapRequest.getLongitude(),  mapRequest.getRadius());
-        System.out.println("*****1111************* "+old);
         if (old != null) {
             return mapResponseService.createMapResponse(old);
         }
@@ -33,7 +32,6 @@ public class MapRequestService {
     }
 
     public MapRequest getMapRequestWithParameters(double latitude, double longitude,  double radius) {
-        System.out.println("latitude: "+ latitude);
         return mapRequestRepository.findByLatitudeAndLongitudeAndRadius(latitude, longitude, radius);
     }
 }
