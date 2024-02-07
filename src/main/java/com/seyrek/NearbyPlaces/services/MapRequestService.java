@@ -1,6 +1,7 @@
 package com.seyrek.NearbyPlaces.services;
 
 import com.seyrek.NearbyPlaces.entities.MapRequest;
+import com.seyrek.NearbyPlaces.entities.MapResponse;
 import com.seyrek.NearbyPlaces.repositories.MapRequestRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,16 +18,22 @@ public class MapRequestService {
         return mapRequestRepository.findAll();
     }
 
-    public MapRequest createMapRequest(MapRequest mapRequest) {
-        //exist => return old: new
-        return mapRequestRepository.save(mapRequest);
+    public MapResponse createMapRequest(MapRequest mapRequest) {
+        MapRequest old = getMapRequestWithParameters(mapRequest.getLatitude(), mapRequest.getLongitude(),  mapRequest.getRadius());
+        System.out.println("*****1111************* "+old);
+        if (old != null) {
+            return mapResponseService.createMapResponse(old);
+        }
+        MapRequest newReq = mapRequestRepository.save(mapRequest);
+        return mapResponseService.createMapResponse(newReq);
     }
 
     public MapRequest getMapRequestById(int id) {
         return mapRequestRepository.findById(id).orElse(null);
     }
 
-    public MapRequest getMapRequestWithParameters(float longitude, float latitude, float radius){
-        return mapRequestRepository.findByLongitudeAndLatitudeAndRadius(longitude, latitude, radius);
+    public MapRequest getMapRequestWithParameters(double latitude, double longitude,  double radius) {
+        System.out.println("latitude: "+ latitude);
+        return mapRequestRepository.findByLatitudeAndLongitudeAndRadius(latitude, longitude, radius);
     }
 }

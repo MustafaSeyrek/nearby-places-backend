@@ -12,7 +12,7 @@ public class MapRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    float longitude;
-    float latitude;
-    float radius;
+    double longitude;
+    double latitude;
+    double radius;
 }

@@ -17,5 +17,7 @@ public class MapResponse {
     @OnDelete(action = OnDeleteAction.CASCADE)
     MapRequest mapRequest;
 
+    @Lob
+    @Column(columnDefinition = "text")
     String jsonResponse;
 }
