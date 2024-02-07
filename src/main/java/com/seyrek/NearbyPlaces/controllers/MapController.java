@@ -34,8 +34,4 @@ public class MapController {
         return new ResponseEntity<>(mapRequestService.createMapRequest(mapRequest), OK);
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<MapRequest> test(@RequestBody MapRequest m){
-        return new ResponseEntity<>(mapRequestService.getMapRequestWithParameters(m.getLongitude(), m.getLatitude(), m.getRadius()), OK);
-    }
 }
