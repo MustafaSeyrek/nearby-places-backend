@@ -4,6 +4,7 @@ import com.seyrek.NearbyPlaces.entities.MapRequest;
 import com.seyrek.NearbyPlaces.entities.MapResponse;
 import com.seyrek.NearbyPlaces.repositories.MapResponseRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -29,7 +30,10 @@ public class MapResponseService {
 
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=" + mapRequest.getLatitude() + "&" + "lon=" + mapRequest.getLongitude();
-        String res = String.valueOf(restTemplate.getForEntity(url, String.class));
+        //String res = String.valueOf(restTemplate.getForEntity(url, String.class));
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+
+        String res = response.getBody();
         MapResponse toSave = new MapResponse();
         toSave.setMapRequest(mapRequest);
         toSave.setJsonResponse(res);
