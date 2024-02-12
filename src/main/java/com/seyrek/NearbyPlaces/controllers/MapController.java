@@ -15,7 +15,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/map")
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin(origins="https://nearby-places-frontend-git-konyaizmir111-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com")
 public class MapController {
     private final MapRequestService mapRequestService;
     private final MapResponseService mapResponseService;
